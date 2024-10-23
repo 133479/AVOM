@@ -1,13 +1,112 @@
 body {
-  background-color: lightblue;
+    background-color:rgb(233, 251, 252);
 }
 
-h1 {
-  color: white;
-  text-align: center;
+@keyframes ButtonBuy {
+    from {color:rgb(233, 251, 252);
+          background-color:rgb(233, 251, 252);
+          border-style: none;}
+          to{
+            background-color:lightgreen; 
+            color:black;
+            border-style: solid;
+          }
+    }
+
+.buy {
+    width: 100%;
+    background-color:rgb(233, 251, 252);
+    color:rgb(233, 251, 252);
+    font-family: Verdana, sans-serif;
+    border-style:none;
+    font-size:25px;
+    border-radius: 4px;
+    transition-duration: 0.5s;
+    animation-name: ButtonBuy;
+    animation-delay: 1s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }
 
-p {
-  font-family: verdana;
-  font-size: 20px;
+.buy:hover {
+    background-color:rgb(198, 235, 198);
+}
+
+.buy:active {
+    background-color:rgb(45, 133, 45)
+}
+
+@keyframes ButtonSell {
+    from {color:rgb(233, 251, 252);
+          background-color:rgb(233, 251, 252);
+          border-style: none;}
+          to{
+            background-color:rgb(136, 197, 255); 
+            color:black;
+            border-style: solid;
+          }
+    }
+
+.open {
+    width: 100%;
+    background-color:rgb(233, 251, 252);
+    color:rgb(233, 251, 252);
+    font-family: Verdana, sans-serif;
+    border-style:none;
+    font-size:25px;
+    border-radius: 4px;
+    transition-duration: 0.5s;
+    animation-name: ButtonSell;
+    animation-delay: 1.5s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+.open:hover {
+    background-color:rgb(198, 228, 255);
+}
+.open:active {
+    background-color:rgb(52, 115, 175);
+}
+
+@keyframes headerApear {
+    from {color:rgb(233, 251, 252);
+            background-color:rgb(233, 251, 252);}
+    }
+
+h3{
+    font-size: 50px;
+    font-family: Verdana, sans-serif;
+    text-align: center;
+    background-color: rgb(181, 255, 185);
+    animation-name: headerApear;
+    animation-duration: 2s;
+}
+
+@keyframes textApear {
+from {color:rgb(233, 251, 252);}
+to {color: black;}
+}
+
+h2{
+    color:rgb(233, 251, 252);
+    font-size:15px;
+    font-family: Verdana, sans-serif;
+    text-align: center;
+    animation-name: textApear;
+    animation-duration: 1s;
+    animation-delay: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+h1{
+    color:rgb(233, 251, 252);
+    font-size: 10px;
+    font-family: Verdana, sans-serif;
+    text-align: center;
+    animation-name: textApear;
+    animation-duration: 1s;
+    animation-delay: 2.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 }

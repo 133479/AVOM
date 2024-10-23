@@ -1,4 +1,5 @@
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+<!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/> -->
+<link rel="stylesheet" type="text/css" href="../static/style.css"/>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type=text/javascript>
 	$(function() {
@@ -10,14 +11,14 @@
 			});
 			return false;
 		});
-                $('a#sell').on('click', function(e) {
-                        e.preventDefault()
-                        $.getJSON('/button_sell',
-                        function(data) {
-                                //do nothing
-                        });
-                        return false;
-                });
+		$('a#open').on('click', function(e) {
+			e.preventDefault()
+			$.getJSON('/button_open',
+			function(data) {
+					//do nothing
+			});
+			return false;
+		});
 
 	});
 </script>
@@ -27,16 +28,10 @@
 <div class='container'>
 	<h3>AVOM interface</h3>
 	<form>
-		<a href=# id='buy'><button class='btn btn-default'>Kopen</button></a>
-		<a href=# id='sell'><button class='btn btn-default'>Openen</button</a>
+		<a href=# id='buy'><button class='buy'>Kopen</button></a>
+		<a href=# id='open'><button class='open'>Openen</button></a>
 	</form>
+	<h2>AVOM doos oppervlakte:</h2>
+	<h1>4032 CM3<br>(14x16x18)</h1>
 
 </div>
-
-
-
-
-<!--
- hello world
-<button name="btn" onclick="press()">Test</button> 
---> 

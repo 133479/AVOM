@@ -88,16 +88,25 @@ def setAngle(a, p):
 	p.ChangeDutyCycle(0)
 
 
-def open():
-	RED.ChangeDutyCycle(_map(0, 0, 255, 0, 100))
-	GREEN.ChangeDutyCycle(_map(10, 0, 255, 0, 100))
-	BLUE.ChangeDutyCycle(_map(20, 0, 255, 0, 100))	
+def open(mod):
+	if mod == "Kopen":
+		RED.ChangeDutyCycle(_map(0, 0, 255, 0, 100))
+		GREEN.ChangeDutyCycle(_map(10, 0, 255, 0, 100))
+		BLUE.ChangeDutyCycle(_map(20, 0, 255, 0, 100))	
+	elif mod == "Openen":
+		RED.ChangeDutyCycle(_map(0, 0, 255, 0, 100))
+		GREEN.ChangeDutyCycle(_map(20, 0, 255, 0, 100))
+		BLUE.ChangeDutyCycle(_map(0, 0, 255, 0, 100))
 	setAngle(90, SERVO)
 	#R, G, B, gp = init()
 
 	clln(0)
-	w("Eten invoeren...", 0, 0)
 	clln(1)
+	w(("> MODUS: " + mod), 0, 0)
+	if mod == "Kopen":
+		w("Eten uithalen...", 1, 0)
+	elif mod == "Openen":
+		w("Eten invoeren...", 1, 0)
 
 
 	sleep(5)
@@ -181,12 +190,14 @@ def index():
 
 #background process happening without any refreshing
 @app.route('/button_buy')
-def background_process_test():
+def background_process_buy():
 
 
-
-	w("Kaart tonen...  ", 0, 0)
+	clln(0)
 	clln(1)
+	w("> MODUS: Kopen", 0, 0)
+	w("Kaart tonen...  ", 1, 0)
+	
 	try:
 		id, text = reader.read()
 		print(id)
@@ -199,7 +210,7 @@ def background_process_test():
 		clln(1)
 		sleep(0.5)
 
-		open()
+		open("Kopen")
 		
 		
 		#R, G, B, GPIO = init()
@@ -207,6 +218,12 @@ def background_process_test():
 		#G.ChangeDutyCycle(_map(10, 0, 255, 0, 100))
 		#B.ChangeDutyCycle(_map(20, 0, 255, 0, 100))			
 		#sleep(3)
+		sleep(0.5)
+		clln(0)
+		clln(1)
+		w("> MODUS: Kopen", 0, 0)
+		w("BERICHT: Klaar!", 1, 0)
+		sleep(1)
 		clln(0)
 		clln(1)
 		#clean(R, G, B, GPIO)
@@ -214,52 +231,45 @@ def background_process_test():
 		return("nothing")
 
 
-"""
-		if id == 591317091032:
-			sleep(0.5)
-			w("", 0, 0)
-			w("	       ", 1, 0)
-			GPIO.cleanup()
-			GPIO.setmode(GPIO.BCM)
-			GPIO.setup([LED_R_PIN, LED_G_PIN, LED_B_PIN],GPIO.OUT)
-			RED = GPIO.PWM(LED_R_PIN, 1000)
-			GREEN = GPIO.PWM(LED_G_PIN, 1000)
-			BLUE = GPIO.PWM(LED_B_PIN, 1000)
-			RED.start(0)
-			GREEN.start(0)
-			BLUE.start(0)
-			RED.ChangeDutyCycle(_map(0, 0, 255, 0, 100))
-			GREEN.ChangeDutyCycle(_map(255, 0, 255, 0, 100))
-			BLUE.ChangeDutyCycle(_map(0, 0, 255, 0, 100))
-			sleep(2)
-			w("	       ", 0, 0)
-			w("	       ", 1, 0)
-			RED.stop()
-			GREEN.stop()
-			BLUE.stop()
-			GPIO.cleanup()
-		else:
-			sleep(0.5)
-			w("Card unsupported", 0, 0)
-			w("	       ", 1, 0)
-			GPIO.cleanup()
-			GPIO.setmode(GPIO.BCM)
-			GPIO.setup([LED_R_PIN, LED_G_PIN, LED_B_PIN],GPIO.OUT)
-			RED = GPIO.PWM(LED_R_PIN, 1000)
-			GREEN = GPIO.PWM(LED_G_PIN, 1000)
-			BLUE = GPIO.PWM(LED_B_PIN, 1000)
-			RED.start(0)
-			GREEN.start(0)
-			BLUE.start(0)
-			RED.ChangeDutyCycle(_map(255, 0, 255, 0, 100))
-			GREEN.ChangeDutyCycle(_map(0, 0, 255, 0, 100))
-			BLUE.ChangeDutyCycle(_map(0, 0, 255, 0, 100))
-			sleep(2)
-			w("		", 0, 0)
-			w("		", 1, 0)
-			RED.stop()
-			GREEN.stop()
-			BLUE.stop()
-			GPIO.cleanup()
+
+#background process happening without any refreshing
+@app.route('/button_open')
+def background_process_open():
+
+
+	clln(0)
+	clln(1)
+	w("> MODUS: Openen", 0, 0)
+	w("Kaart tonen...  ", 1, 0)
+	
+	try:
+		id, text = reader.read()
+		print(id)
+		print(text)
+		w("Gebruiker gevon-", 0, 0)
+		w("den! Wacht even.", 1, 0)
+		sleep(1)
+	finally:
+		w("Deur openen...  ", 0, 0)
+		clln(1)
+		sleep(0.5)
+
+		open("Openen")
+		
+		
+		#R, G, B, GPIO = init()
+		#R.ChangeDutyCycle(_map(0, 0, 255, 0, 100))
+		#G.ChangeDutyCycle(_map(10, 0, 255, 0, 100))
+		#B.ChangeDutyCycle(_map(20, 0, 255, 0, 100))			
+		#sleep(3)
+		sleep(0.5)
+		clln(0)
+		clln(1)
+		w("> MODUS: Openen", 0, 0)
+		w("BERICHT: Klaar!", 1, 0)
+		sleep(1)
+		clln(0)
+		clln(1)
+		#clean(R, G, B, GPIO)
+		dhn()
 		return("nothing")
-"""
